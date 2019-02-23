@@ -1,0 +1,31 @@
+h1, h2, h3, h4, h5, h6, p, a, th, td, li {
+    font-family: 'Roboto', sans-serif;
+}
+h1 {
+    background-color: rgb(86, 171, 250);
+}
+h2 {
+    background-color: rgb(131, 195, 255);
+}
+h3 {
+    background-color: rgb(142, 199, 252);
+}
+h4 {
+    background-color: rgb(158, 204, 247);
+}
+h5 {
+    background-color: rgb(170, 210, 247);
+}
+h6 {
+    background-color: rgb(191, 220, 247);
+}
+
+
+th {
+    background-color: lightblue;
+}
+
+td {
+    background-color: lightcyan;
+    width: 300px;
+}
