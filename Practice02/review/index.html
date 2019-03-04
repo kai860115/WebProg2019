@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Viewer</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    </head>
+    <body>   
+        <div class="image-viewer__container">
+            <div>
+                <p class="image-viewer__title">Image Viewer</p>
+            </div>
+            <div class="image-viewer__main">
+                <span id="left" class="image-viewer__button">
+                    <img src="./images/back.png" alt="">
+                </span>
+                <span class="image-viewer__display" >
+                    <img id="display" src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg">
+                    <div class="image-viewer__display-source-wrapper">
+                        <p id="source">source: https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg<source></p>
+                    </div>
+                </span>
+                <span id="right" class="image-viewer__button">
+                    <img src="./images/next.png" alt="" >
+                </span>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
