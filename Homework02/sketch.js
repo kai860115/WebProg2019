@@ -233,6 +233,7 @@ function draw() {
 
 function mouseClicked() {
     if (state === 0) {
+        bird.jump();
         start();
     } else if (state === 1) {
         bird.jump();
