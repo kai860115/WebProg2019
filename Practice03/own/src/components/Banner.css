@@ -1,0 +1,17 @@
+.banner-container {
+    color: white;
+    background: #fff;
+    background-image: url("../pictures/banner-blog.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    align-items:center;
+    height: 300px;
+}
+.banner-slogan{
+    width: 75%;
+    position: relative;
+    margin-left: 1em;
+}
