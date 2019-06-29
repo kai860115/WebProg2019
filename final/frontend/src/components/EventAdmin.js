@@ -1,27 +1,39 @@
 import React, { Component } from 'react'
 import { Card, Button, CardTitle, CardText, Col, Badge } from 'reactstrap';
 import { Mutation } from 'react-apollo'
-import { DELETEEVENT_MUTATION, EVENTS_QUERY, MYEVENTS_QUERY } from '../graphql'
-import editEvent from './editEvent'
+import { DELETEEVENT_MUTATION, EVENTS_QUERY, MYEVENTS_QUERY, CREATEBYME_QUERY, EVENT_QUERY } from '../graphql'
+import EditEvent from './EditEvent'
+import moment from 'moment'
 
-export default class Event extends Component {
+export default class EventAdmin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleted: false
+    }
+  }
+
+
   deleteEventComplete = (Cache, { data }) => {
+    this.setState({
+      deleted: true
+    })
     window.alert("Successful Delete!")
   }
 
   render() {
     const { id, title, descript, members, createBy, date } = this.props.event
     return (
-      <Col sm="4" style={{ width: 300, marginTop: 10 }}>
-        <Card body outline color="primary">
+      <Col sm={this.props.sm} style={{ marginTop: 10 }}>
+        <Card body outline color="success">
           <CardTitle ><h4>{title}</h4><Badge color="secondary">{members.length} people join </Badge></CardTitle>
           <CardText>description: {descript}</CardText>
-          <CardText>date:  {date.substring(0, 10)}</CardText>
+          <CardText>date:  {moment(date).format('YYYY/M/DD  h:mm a')}</CardText>
           <CardText>create by: {createBy.username}</CardText>
-          <editEvent id={id} />
+          <EditEvent deleted={this.state.deleted} event={this.props.event} />
           <Mutation
             mutation={DELETEEVENT_MUTATION}
-            refetchQueries={[{ query: MYEVENTS_QUERY }, { query: EVENTS_QUERY }]}
+            refetchQueries={[{ query: EVENT_QUERY }, { query: MYEVENTS_QUERY }, { query: EVENTS_QUERY }, { query: CREATEBYME_QUERY }]}
             update={this.deleteEventComplete}
           >
             {(mutation, { loading, error }) => {
@@ -33,6 +45,7 @@ export default class Event extends Component {
                 <Button
                   color="danger"
                   style={{ marginTop: 10 }}
+                  disabled={this.state.deleted}
                   onClick={
                     (e) => {
                       this.deleteEventMutation({
@@ -52,4 +65,8 @@ export default class Event extends Component {
       </Col>
     )
   }
+}
+
+EventAdmin.defaultProps = {
+  sm: '4'
 }

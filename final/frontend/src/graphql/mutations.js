@@ -34,6 +34,7 @@ export const SIGNIN_MUTATION = gql`
     ) {
       token
       id
+      username
     }
   }
 `

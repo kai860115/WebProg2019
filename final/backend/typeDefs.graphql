@@ -1,12 +1,13 @@
 scalar DateTime
 
 type Query {
-  user(id: ID!): User
+  user(id: ID!): User!
   users: [User!]!
   me: User
   myEvents: [Event!]!
   createByMe: [Event!]!
   events: [Event!]!
+  event(id:ID!): Event!
 }
 
 type Mutation {
@@ -57,5 +58,6 @@ type Event {
 
 type Token {
   id: ID!
+  username: String!
   token: String!
 }

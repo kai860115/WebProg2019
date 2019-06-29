@@ -41,6 +41,7 @@ export default class Login extends Component {
           if (data) {
             localStorage.setItem('token', data.signIn.token)
             localStorage.setItem('uid', data.signIn.id)
+            localStorage.setItem('username', data.signIn.username)
             return <Redirect to="/" />;
           }
 

@@ -7,7 +7,7 @@ import Event from './Event'
 export default class AllEvent extends Component {
   render() {
     return (
-      <Query query={EVENTS_QUERY} fetchPolicy="network-only">
+      <Query query={EVENTS_QUERY} fetchPolicy="cache-and-network">
         {({ loading, data, error }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <p>Error...</p>
@@ -18,6 +18,9 @@ export default class AllEvent extends Component {
                   data.events.map(event => {
                     return (<Event key={event.id} event={event} />)
                   })
+                }
+                {
+                  (data.events.length === 0) ? (<h4>No Activities</h4>): ''
                 }
               </Row>
             </Container>

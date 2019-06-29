@@ -9,6 +9,7 @@ import Home from '../Home'
 import AllEvent from '../../components/AllEvent'
 import MyEvent from '../../components/MyEvent'
 import CreateByMe from '../../components/CreateByMe'
+import Calendar from '../../components/Calendar'
 import { ME_QUERY } from '../../graphql'
 import { Query } from 'react-apollo'
 
@@ -36,22 +37,16 @@ class App extends Component {
             return <NavbarPage />
           }}
         </Query>
-        <Container style={{ height: "75%", marginTop: 50, overflow: "scroll", justifyContent: 'center' }}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Auth} />
-            <Route exact path="/allEvents" component={AllEvent} />
-            <Route exact path="/myEvents" component={MyEvent} />
-            <Route exact path="/createByMe" component={CreateByMe} />
-          </Switch>
-        </Container>
-        <Container style={{ display: 'flex', textAlign: 'center', justifyContent: 'center', marginTop: "2%" }}>
+        <Container style={{ display: 'flex', textAlign: 'center', justifyContent: 'center', marginTop: "2%", position:'fix' }}>
           <ButtonGroup>
             <Button outline color="success">
-              <Link to="/allEvents">All Events</Link>
+              <Link to="/allActivities">All Activities</Link>
             </Button>
             <Button outline color="success">
-              <Link to="/myEvents">My Events</Link>
+              <Link to="/myActivities">My Activities</Link>
+            </Button>
+            <Button outline color="success">
+              <Link to="/calendar">Calendar</Link>
             </Button>
             <Button outline color="success">
               <Link to="/createByMe">Create By Me</Link>
@@ -59,6 +54,16 @@ class App extends Component {
           </ButtonGroup>
         </Container>
 
+        <Container style={{ height: "75%", marginTop: 50, overflow: "scroll", justifyContent: 'center' }}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Auth} />
+            <Route exact path="/allActivities" component={AllEvent} />
+            <Route exact path="/myActivities" component={MyEvent} />
+            <Route exact path="/createByMe" component={CreateByMe} />
+            <Route exact path="/calendar" component={Calendar} />
+          </Switch>
+        </Container>
       </BrowserRouter>
     );
 

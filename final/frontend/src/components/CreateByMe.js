@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Container, Row } from 'reactstrap';
 import { Query } from 'react-apollo'
 import { CREATEBYME_QUERY } from '../graphql'
-import Event from './Event'
+import EventAdmin from './EventAdmin'
 
 export default class MyEvent extends Component {
   render() {
-    if (!localStorage.getItem('token')) {
+    if (!localStorage.getItem('uid')) {
       return (
         <Container style={{ display: 'flex', textAlign: 'center', justifyContent: 'center', alignContent: 'center' }}>
           <Row>
@@ -16,7 +16,7 @@ export default class MyEvent extends Component {
       )
     }
     return (
-      <Query query={CREATEBYME_QUERY} fetchPolicy="network-only">
+      <Query query={CREATEBYME_QUERY} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           if (error) return <p>{error.message}</p>
           if (loading) return <p>Loading...</p>
@@ -26,8 +26,11 @@ export default class MyEvent extends Component {
                 <Row style={{ flexWrap: "wrap" }}>
                   {
                     data.createByMe.map(event => {
-                      return (<Event key={event.id} event={event} />)
+                      return (<EventAdmin key={event.id} event={event} />)
                     })
+                  }
+                  {
+                    (data.createByMe.length === 0) ? (<h4>No Activities</h4>): ''
                   }
                 </Row>
               </Container>

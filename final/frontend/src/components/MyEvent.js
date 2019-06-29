@@ -16,7 +16,7 @@ export default class MyEvent extends Component {
       )
     }
     return (
-      <Query query={MYEVENTS_QUERY} fetchPolicy="network-only">
+      <Query query={MYEVENTS_QUERY} fetchPolicy="cache-and-network">
         {({ loading, error, data }) => {
           if (error) return <p>{error.message}</p>
           if (loading) return <p>Loading...</p>
@@ -28,6 +28,9 @@ export default class MyEvent extends Component {
                     data.myEvents.map(event => {
                       return (<Event key={event.id} event={event} />)
                     })
+                  }
+                  {
+                    (data.myEvents.length === 0) ? (<h4>No Activities</h4>): ''
                   }
                 </Row>
               </Container>

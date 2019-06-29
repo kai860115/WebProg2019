@@ -8,6 +8,7 @@ export const EVENTS_QUERY = gql`
       descript
       createBy{
         username
+        id
       },
       members {
         id
@@ -25,6 +26,7 @@ export const MYEVENTS_QUERY = gql`
       descript
       createBy{
         username
+        id
       },
       members {
         id
@@ -42,6 +44,7 @@ export const CREATEBYME_QUERY = gql`
       descript
       createBy{
         username
+        id
       },
       members {
         id
@@ -58,6 +61,25 @@ export const ME_QUERY = gql`
       id
       username
       name
+    }
+  }
+`
+
+
+export const EVENT_QUERY = gql`
+  query event($id: ID!) {
+    event(id: $id) {
+      id
+      title
+      descript
+      createBy{
+        username
+        id
+      },
+      members {
+        id
+      }
+      date
     }
   }
 `

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import AddEvent from './AddEvent'
+import Username from './Username'
 
 import {
   Navbar,
@@ -17,7 +18,7 @@ class NavbarPage extends Component {
     if (!localStorage.getItem('token')) {
       return (
         <Navbar className="navbar-dark bg-dark" light expand="md">
-          <NavbarBrand href="/"><h3>Events</h3></NavbarBrand>
+          <NavbarBrand href="/"><h3>Activities</h3></NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink tag={Link} to="/login/" >Login</NavLink>
@@ -28,14 +29,15 @@ class NavbarPage extends Component {
     }
     return (
       <Navbar className="navbar-dark bg-dark" light expand="md">
-        <NavbarBrand href="/"><h3>Events</h3></NavbarBrand>
+        <NavbarBrand href="/"><h3>Home</h3></NavbarBrand>
         <Nav className="ml-auto" navbar>
-          <NavItem>
+          <NavItem style={{marginLeft:'10px'}}>
             <NavLink
               tag={Link}
               onClick={() => {
                 localStorage.removeItem('token')
                 localStorage.removeItem('uid')
+                localStorage.removeItem('username')
               }}
               to="/login">
               Logout
@@ -43,6 +45,9 @@ class NavbarPage extends Component {
           </NavItem>
           <NavItem>
             <AddEvent />
+          </NavItem>
+          <NavItem style={{marginLeft:'10px'}}>
+            <Username />
           </NavItem>
         </Nav>
       </Navbar>

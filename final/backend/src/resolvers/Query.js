@@ -33,7 +33,13 @@ const Query = {
       throw new Error('Please Log In First')
     }
     return await Event.find({ 'createBy': currentUser.id });
-  }
+  },
+  event: async (parent, {id}, context, info) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new UserInputError(`${id} is not a valid event ID.`)
+    }
+    return await Event.findById(id)
+  },
 }
 
 export { Query as default }

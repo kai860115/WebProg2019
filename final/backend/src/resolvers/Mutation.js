@@ -29,7 +29,8 @@ const Mutation = {
     }
     const token = await createToken(user)
     const id = user.id
-    return { token, id }
+    const username = user.username
+    return { token, id, username }
   },
   createEvent: async (root, args, { currentUser }, info) => {
     await Joi.validate(args.data, CreateEvent)
@@ -61,7 +62,7 @@ const Mutation = {
     if (!currentUser) {
       throw new Error('Please Log In First')
     }
-    return await Event.findByIdAndUpdate(args.id, { $pull: { members: currentUser.id } })
+    return await Event.findByIdAndDelete(args.id, { $pull: { members: currentUser.id } })
   }
 }
 
